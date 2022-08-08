@@ -85,21 +85,21 @@ def return_with_trip_times(month):
 
 frame_with_durations = return_with_trip_times(month)
 
-frame_with_durations.head()
+# frame_with_durations.head()
 
 #calculating 0-100th percentile to find a the correct percentile value for removal of outliers
-for i in range(0,100,10):
-    var =frame_with_durations["trip_times"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print ("100 percentile value is ",var[-1])
-
-#looking further from the 99th percecntile
-for i in range(90,100):
-    var =frame_with_durations["trip_times"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print ("100 percentile value is ",var[-1])
+# for i in range(0,100,10):
+#     var =frame_with_durations["trip_times"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print ("100 percentile value is ",var[-1])
+#
+# #looking further from the 99th percecntile
+# for i in range(90,100):
+#     var =frame_with_durations["trip_times"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print ("100 percentile value is ",var[-1])
 
 #removing data based on our analysis and TLC regulations
 frame_with_durations_modified=frame_with_durations[(frame_with_durations.trip_times>1) & (frame_with_durations.trip_times<720)]
@@ -115,27 +115,27 @@ frame_with_durations_modified['Speed'] = 60*(frame_with_durations_modified['trip
 # sns.boxplot(y="Speed", data =frame_with_durations_modified)
 # plt.show()
 
-#calculating speed values at each percntile 0,10,20,30,40,50,60,70,80,90,100
-for i in range(0,100,10):
-    var =frame_with_durations_modified["Speed"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print("100 percentile value is ",var[-1])
-
-#calculating speed values at each percntile 90,91,92,93,94,95,96,97,98,99,100
-for i in range(90,100):
-    var =frame_with_durations_modified["Speed"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print("100 percentile value is ",var[-1])
-
-
-#calculating speed values at each percntile 99.0,99.1,99.2,99.3,99.4,99.5,99.6,99.7,99.8,99.9,100
-for i in np.arange(0.0, 1.0, 0.1):
-    var =frame_with_durations_modified["Speed"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(99+i,var[int(len(var)*(float(99+i)/100))]))
-print("100 percentile value is ",var[-1])
+# #calculating speed values at each percntile 0,10,20,30,40,50,60,70,80,90,100
+# for i in range(0,100,10):
+#     var =frame_with_durations_modified["Speed"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print("100 percentile value is ",var[-1])
+#
+# #calculating speed values at each percntile 90,91,92,93,94,95,96,97,98,99,100
+# for i in range(90,100):
+#     var =frame_with_durations_modified["Speed"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print("100 percentile value is ",var[-1])
+#
+#
+# #calculating speed values at each percntile 99.0,99.1,99.2,99.3,99.4,99.5,99.6,99.7,99.8,99.9,100
+# for i in np.arange(0.0, 1.0, 0.1):
+#     var =frame_with_durations_modified["Speed"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(99+i,var[int(len(var)*(float(99+i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 #removing further outliers based on the 99.9th percentile value
 frame_with_durations_modified=frame_with_durations[(frame_with_durations.Speed>0) & (frame_with_durations.Speed<45.31)]
@@ -149,53 +149,53 @@ sum(frame_with_durations_modified["Speed"]) / float(len(frame_with_durations_mod
 # sns.boxplot(y="trip_distance", data =frame_with_durations_modified)
 # plt.show()
 
-#calculating trip distance values at each percntile 0,10,20,30,40,50,60,70,80,90,100
-for i in range(0,100,10):
-    var =frame_with_durations_modified["trip_distance"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print("100 percentile value is ",var[-1])
+# #calculating trip distance values at each percntile 0,10,20,30,40,50,60,70,80,90,100
+# for i in range(0,100,10):
+#     var =frame_with_durations_modified["trip_distance"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 
-#calculating trip distance values at each percntile 90,91,92,93,94,95,96,97,98,99,100
-for i in range(90,100):
-    var =frame_with_durations_modified["trip_distance"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print("100 percentile value is ",var[-1])
+# #calculating trip distance values at each percntile 90,91,92,93,94,95,96,97,98,99,100
+# for i in range(90,100):
+#     var =frame_with_durations_modified["trip_distance"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 
 #calculating trip distance values at each percntile 99.0,99.1,99.2,99.3,99.4,99.5,99.6,99.7,99.8,99.9,100
-for i in np.arange(0.0, 1.0, 0.1):
-    var =frame_with_durations_modified["trip_distance"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(99+i,var[int(len(var)*(float(99+i)/100))]))
-print("100 percentile value is ",var[-1])
+# for i in np.arange(0.0, 1.0, 0.1):
+#     var =frame_with_durations_modified["trip_distance"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(99+i,var[int(len(var)*(float(99+i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 
 #removing further outliers based on the 99.9th percentile value
 frame_with_durations_modified=frame_with_durations[(frame_with_durations.trip_distance>0) & (frame_with_durations.trip_distance<23)]
 
-#calculating total fare amount values at each percntile 0,10,20,30,40,50,60,70,80,90,100
-for i in range(0,100,10):
-    var = frame_with_durations_modified["total_amount"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print("100 percentile value is ",var[-1])
+# #calculating total fare amount values at each percntile 0,10,20,30,40,50,60,70,80,90,100
+# for i in range(0,100,10):
+#     var = frame_with_durations_modified["total_amount"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 #calculating total fare amount values at each percntile 90,91,92,93,94,95,96,97,98,99,100
-for i in range(90,100):
-    var = frame_with_durations_modified["total_amount"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
-print("100 percentile value is ",var[-1])
+# for i in range(90,100):
+#     var = frame_with_durations_modified["total_amount"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(i,var[int(len(var)*(float(i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 #calculating total fare amount values at each percntile 99.0,99.1,99.2,99.3,99.4,99.5,99.6,99.7,99.8,99.9,100
-for i in np.arange(0.0, 1.0, 0.1):
-    var = frame_with_durations_modified["total_amount"].values
-    var = np.sort(var,axis = None)
-    print("{} percentile value is {}".format(99+i,var[int(len(var)*(float(99+i)/100))]))
-print("100 percentile value is ",var[-1])
+# for i in np.arange(0.0, 1.0, 0.1):
+#     var = frame_with_durations_modified["total_amount"].values
+#     var = np.sort(var,axis = None)
+#     print("{} percentile value is {}".format(99+i,var[int(len(var)*(float(99+i)/100))]))
+# print("100 percentile value is ",var[-1])
 
 # Remove all outliers/erronous points.
 
@@ -323,663 +323,665 @@ def plot_clusters(frame):
     # plt.show()
 
 point_list=plot_clusters(frame_with_durations_outliers_removed)
-
-# time binning
-
-# Refer:https://www.unixtimestamp.com/
-# 1420070400 : 2015-01-01 00:00:00
-# 1422748800 : 2015-02-01 00:00:00
-# 1425168000 : 2015-03-01 00:00:00
-# 1427846400 : 2015-04-01 00:00:00
-# 1430438400 : 2015-05-01 00:00:00
-# 1433116800 : 2015-06-01 00:00:00
-
-# 1451606400 : 2016-01-01 00:00:00
-# 1454284800 : 2016-02-01 00:00:00
-# 1456790400 : 2016-03-01 00:00:00
-# 1459468800 : 2016-04-01 00:00:00
-# 1462060800 : 2016-05-01 00:00:00
-# 1464739200 : 2016-06-01 00:00:00
-
-def add_pickup_bins(frame, month, year):
-    unix_pickup_times = [i for i in frame['pickup_times'].values]
-    unix_times = [[1420070400, 1422748800, 1425168000, 1427846400, 1430438400, 1433116800],
-                  [1451606400, 1454284800, 1456790400, 1459468800, 1462060800, 1464739200]]
-
-    start_pickup_unix = unix_times[year - 2015][month - 1]
-    # https://www.timeanddate.com/time/zones/est
-    # (int((i-start_pickup_unix)/600)+33) : our unix time is in gmt to we are converting it to est
-    tenminutewise_binned_unix_pickup_times = [(int((i - start_pickup_unix) / 600) + 33) for i in unix_pickup_times]
-    frame['pickup_bins'] = np.array(tenminutewise_binned_unix_pickup_times)
-    return frame
-
-
-# clustering, making pickup bins and grouping by pickup cluster and pickup bins
-frame_with_durations_outliers_removed['pickup_cluster'] = kmeans.predict(frame_with_durations_outliers_removed[['pickup_latitude', 'pickup_longitude']])
-jan_2015_frame = add_pickup_bins(frame_with_durations_outliers_removed,1,2015)
-jan_2015_groupby = jan_2015_frame[['pickup_cluster','pickup_bins','trip_distance']].groupby(['pickup_cluster','pickup_bins']).count()
-
-# we add two more columns 'pickup_cluster'(to which cluster it belogns to)
-# and 'pickup_bins' (to which 10min intravel the trip belongs to)
-jan_2015_frame.head()
-
-# hear the trip_distance represents the number of pickups that are happend in that particular 10min intravel
-# this data frame has two indices
-# primary index: pickup_cluster (cluster number)
-# secondary index : pickup_bins (we devid whole months time into 10min intravels 24*31*60/10 =4464bins)
-jan_2015_groupby.head()
-
-
-# upto now we cleaned data and prepared data for the month 2015,
-
-# now do the same operations for months Jan, Feb, March of 2016
-# 1. get the dataframe which inlcudes only required colums
-# 2. adding trip times, speed, unix time stamp of pickup_time
-# 4. remove the outliers based on trip_times, speed, trip_duration, total_amount
-# 5. add pickup_cluster to each data point
-# 6. add pickup_bin (index of 10min intravel to which that trip belongs to)
-# 7. group by data, based on 'pickup_cluster' and 'pickuo_bin'
-
-# Data Preparation for the months of Jan,Feb and March 2016
-def datapreparation(month, kmeans, month_no, year_no):
-    print("Return with trip times..")
-
-    frame_with_durations = return_with_trip_times(month)
-
-    print("Remove outliers..")
-    frame_with_durations_outliers_removed = remove_outliers(frame_with_durations)
-
-    print("Estimating clusters..")
-    frame_with_durations_outliers_removed['pickup_cluster'] = kmeans.predict(
-        frame_with_durations_outliers_removed[['pickup_latitude', 'pickup_longitude']])
-    # frame_with_durations_outliers_removed_2016['pickup_cluster'] = kmeans.predict(frame_with_durations_outliers_removed_2016[['pickup_latitude', 'pickup_longitude']])
-
-    print("Final groupbying..")
-    final_updated_frame = add_pickup_bins(frame_with_durations_outliers_removed, month_no, year_no)
-    final_groupby_frame = final_updated_frame[['pickup_cluster', 'pickup_bins', 'trip_distance']].groupby(
-        ['pickup_cluster', 'pickup_bins']).count()
-
-    return final_updated_frame, final_groupby_frame
-
-
-month_jan_2016 = dd.read_csv('yellow_tripdata_2016-01.csv')
-month_feb_2016 = dd.read_csv('yellow_tripdata_2016-02.csv')
-month_mar_2016 = dd.read_csv('yellow_tripdata_2016-03.csv')
-
-jan_2016_frame, jan_2016_groupby = datapreparation(month_jan_2016, kmeans, 1, 2016)
-feb_2016_frame, feb_2016_groupby = datapreparation(month_feb_2016, kmeans, 2, 2016)
-mar_2016_frame, mar_2016_groupby = datapreparation(month_mar_2016, kmeans, 3, 2016)
-
-
-#smoothing
-
-# Gets the unique bins where pickup values are present for each each reigion
-
-# for each cluster region we will collect all the indices of 10min intravels in which the pickups are happened
-# we got an observation that there are some pickpbins that doesnt have any pickups
-def return_unq_pickup_bins(frame):
-    values = []
-    for i in range(0,40):
-        new = frame[frame['pickup_cluster'] == i]
-        list_unq = list(set(new['pickup_bins']))
-        list_unq.sort()
-        values.append(list_unq)
-    return values
-
-
-# for every month we get all indices of 10min intravels in which atleast one pickup got happened
-
-#jan
-jan_2015_unique = return_unq_pickup_bins(jan_2015_frame)
-jan_2016_unique = return_unq_pickup_bins(jan_2016_frame)
-
-#feb
-feb_2016_unique = return_unq_pickup_bins(feb_2016_frame)
-
-#march
-mar_2016_unique = return_unq_pickup_bins(mar_2016_frame)
-
-
-# for each cluster number of 10min intravels with 0 pickups
-for i in range(40):
-    print("for the ",i,"th cluster number of 10min intavels with zero pickups: ",4464 - len(set(jan_2015_unique[i])))
-    print('-'*60)
-
-
-# Fills a value of zero for every bin where no pickup data is present
-# the count_values: number pickps that are happened in each region for each 10min intravel
-# there wont be any value if there are no picksups.
-# values: number of unique bins
-
-# for every 10min intravel(pickup_bin) we will check it is there in our unique bin,
-# if it is there we will add the count_values[index] to smoothed data
-# if not we add 0 to the smoothed data
-# we finally return smoothed data
-def fill_missing(count_values,values):
-    smoothed_regions=[]
-    ind=0
-    for r in range(0,40):
-        smoothed_bins=[]
-        for i in range(4464):
-            if i in values[r]:
-                smoothed_bins.append(count_values[ind])
-                ind+=1
-            else:
-                smoothed_bins.append(0)
-        smoothed_regions.extend(smoothed_bins)
-    return smoothed_regions
-
-
-# Fills a value of zero for every bin where no pickup data is present
-# the count_values: number pickps that are happened in each region for each 10min intravel
-# there wont be any value if there are no picksups.
-# values: number of unique bins
-
-# for every 10min intravel(pickup_bin) we will check it is there in our unique bin,
-# if it is there we will add the count_values[index] to smoothed data
-# if not we add smoothed data (which is calculated based on the methods that are discussed in the above markdown cell)
-# we finally return smoothed data
-def smoothing(count_values,values):
-    smoothed_regions=[] # stores list of final smoothed values of each reigion
-    ind=0
-    repeat=0
-    smoothed_value=0
-    for r in range(0,40):
-        smoothed_bins=[] #stores the final smoothed values
-        repeat=0
-        for i in range(4464):
-            if repeat!=0: # prevents iteration for a value which is already visited/resolved
-                repeat-=1
-                continue
-            if i in values[r]: #checks if the pickup-bin exists
-                smoothed_bins.append(count_values[ind]) # appends the value of the pickup bin if it exists
-            else:
-                if i!=0:
-                    right_hand_limit=0
-                    for j in range(i,4464):
-                        if  j not in values[r]: #searches for the left-limit or the pickup-bin value which has a pickup value
-                            continue
-                        else:
-                            right_hand_limit=j
-                            break
-                    if right_hand_limit==0:
-                    #Case 1: When we have the last/last few values are found to be missing,hence we have no right-limit here
-                        smoothed_value=count_values[ind-1]*1.0/((4463-i)+2)*1.0
-                        for j in range(i,4464):
-                            smoothed_bins.append(math.ceil(smoothed_value))
-                        smoothed_bins[i-1] = math.ceil(smoothed_value)
-                        repeat=(4463-i)
-                        ind-=1
-                    else:
-                    #Case 2: When we have the missing values between two known values
-                        smoothed_value=(count_values[ind-1]+count_values[ind])*1.0/((right_hand_limit-i)+2)*1.0
-                        for j in range(i,right_hand_limit+1):
-                            smoothed_bins.append(math.ceil(smoothed_value))
-                        smoothed_bins[i-1] = math.ceil(smoothed_value)
-                        repeat=(right_hand_limit-i)
-                else:
-                    #Case 3: When we have the first/first few values are found to be missing,hence we have no left-limit here
-                    right_hand_limit=0
-                    for j in range(i,4464):
-                        if  j not in values[r]:
-                            continue
-                        else:
-                            right_hand_limit=j
-                            break
-                    smoothed_value=count_values[ind]*1.0/((right_hand_limit-i)+1)*1.0
-                    for j in range(i,right_hand_limit+1):
-                            smoothed_bins.append(math.ceil(smoothed_value))
-                    repeat=(right_hand_limit-i)
-            ind+=1
-        smoothed_regions.extend(smoothed_bins)
-    return smoothed_regions
-
-
-#Filling Missing values of Jan-2015 with 0
-# here in jan_2015_groupby dataframe the trip_distance represents the number of pickups that are happened
-jan_2015_fill = fill_missing(jan_2015_groupby['trip_distance'].values,jan_2015_unique)
-
-#Smoothing Missing values of Jan-2015
-jan_2015_smooth = smoothing(jan_2015_groupby['trip_distance'].values,jan_2015_unique)
-
-
-# number of 10min indices for jan 2015= 24*31*60/10 = 4464
-# number of 10min indices for jan 2016 = 24*31*60/10 = 4464
-# number of 10min indices for feb 2016 = 24*29*60/10 = 4176
-# number of 10min indices for march 2016 = 24*30*60/10 = 4320
-# for each cluster we will have 4464 values, therefore 40*4464 = 178560 (length of the jan_2015_fill)
-print("number of 10min intravels among all the clusters ",len(jan_2015_fill))
-
-
-
-# Jan-2015 data is smoothed, Jan,Feb & March 2016 data missing values are filled with zero
-jan_2015_smooth = smoothing(jan_2015_groupby['trip_distance'].values,jan_2015_unique)
-jan_2016_smooth = fill_missing(jan_2016_groupby['trip_distance'].values,jan_2016_unique)
-feb_2016_smooth = fill_missing(feb_2016_groupby['trip_distance'].values,feb_2016_unique)
-mar_2016_smooth = fill_missing(mar_2016_groupby['trip_distance'].values,mar_2016_unique)
-
-# Making list of all the values of pickup data in every bin for a period of 3 months and storing them region-wise
-regions_cum = []
-
-# a =[1,2,3]
-# b = [2,3,4]
-# a+b = [1, 2, 3, 2, 3, 4]
-
-# number of 10min indices for jan 2015= 24*31*60/10 = 4464
-# number of 10min indices for jan 2016 = 24*31*60/10 = 4464
-# number of 10min indices for feb 2016 = 24*29*60/10 = 4176
-# number of 10min indices for march 2016 = 24*31*60/10 = 4464
-# regions_cum: it will contain 40 lists, each list will contain 4464+4176+4464 values which represents the number of pickups
-# that are happened for three months in 2016 data
-
-for i in range(0,40):
-    regions_cum.append(jan_2016_smooth[4464*i:4464*(i+1)]+feb_2016_smooth[4176*i:4176*(i+1)]+mar_2016_smooth[4464*i:4464*(i+1)])
-
-# print(len(regions_cum))
-# 40
-# print(len(regions_cum[0]))
-# 13104
-
-
-def uniqueish_color():
-
-    """There're better ways to generate unique colors, but this isn't awful."""
-    return plt.cm.gist_ncar(np.random.random())
-first_x = list(range(0,4464))
-second_x = list(range(4464,8640))
-third_x = list(range(8640,13104))
-
-# getting peaks: https://blog.ytotech.com/2015/11/01/findpeaks-in-python/
-# read more about fft function : https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html
-Y    = np.fft.fft(np.array(jan_2016_smooth)[0:4460])
-# read more about the fftfreq: https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fftfreq.html
-freq = np.fft.fftfreq(4460, 1)
-n = len(freq)
-
-#Preparing the Dataframe only with x(i) values as jan-2015 data and y(i) values as jan-2016
-ratios_jan = pd.DataFrame()
-ratios_jan['Given']=jan_2015_smooth
-ratios_jan['Prediction']=jan_2016_smooth
-ratios_jan['Ratios']=ratios_jan['Prediction']*1.0/ratios_jan['Given']*1.0
-
-
-# modelling baseline models
-
-def MA_R_Predictions(ratios, month):
-    predicted_ratio = (ratios['Ratios'].values)[0]
-    error = []
-    predicted_values = []
-    window_size = 3
-    predicted_ratio_values = []
-    for i in range(0, 4464 * 40):
-        if i % 4464 == 0:
-            predicted_ratio_values.append(0)
-            predicted_values.append(0)
-            error.append(0)
-            continue
-        predicted_ratio_values.append(predicted_ratio)
-        predicted_values.append(int(((ratios['Given'].values)[i]) * predicted_ratio))
-        error.append(
-            abs((math.pow(int(((ratios['Given'].values)[i]) * predicted_ratio) - (ratios['Prediction'].values)[i], 1))))
-        if i + 1 >= window_size:
-            predicted_ratio = sum((ratios['Ratios'].values)[(i + 1) - window_size:(i + 1)]) / window_size
-        else:
-            predicted_ratio = sum((ratios['Ratios'].values)[0:(i + 1)]) / (i + 1)
-
-    ratios['MA_R_Predicted'] = predicted_values
-    ratios['MA_R_Error'] = error
-    mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
-    mse_err = sum([e ** 2 for e in error]) / len(error)
-    return ratios, mape_err, mse_err
-
-
-def MA_P_Predictions(ratios, month):
-    predicted_value = (ratios['Prediction'].values)[0]
-    error = []
-    predicted_values = []
-    window_size = 1
-    predicted_ratio_values = []
-    for i in range(0, 4464 * 40):
-        predicted_values.append(predicted_value)
-        error.append(abs((math.pow(predicted_value - (ratios['Prediction'].values)[i], 1))))
-        if i + 1 >= window_size:
-            predicted_value = int(sum((ratios['Prediction'].values)[(i + 1) - window_size:(i + 1)]) / window_size)
-        else:
-            predicted_value = int(sum((ratios['Prediction'].values)[0:(i + 1)]) / (i + 1))
-
-    ratios['MA_P_Predicted'] = predicted_values
-    ratios['MA_P_Error'] = error
-    mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
-    mse_err = sum([e ** 2 for e in error]) / len(error)
-    return ratios, mape_err, mse_err
-
-
-def WA_R_Predictions(ratios, month):
-    predicted_ratio = (ratios['Ratios'].values)[0]
-    alpha = 0.5
-    error = []
-    predicted_values = []
-    window_size = 5
-    predicted_ratio_values = []
-    for i in range(0, 4464 * 40):
-        if i % 4464 == 0:
-            predicted_ratio_values.append(0)
-            predicted_values.append(0)
-            error.append(0)
-            continue
-        predicted_ratio_values.append(predicted_ratio)
-        predicted_values.append(int(((ratios['Given'].values)[i]) * predicted_ratio))
-        error.append(
-            abs((math.pow(int(((ratios['Given'].values)[i]) * predicted_ratio) - (ratios['Prediction'].values)[i], 1))))
-        if i + 1 >= window_size:
-            sum_values = 0
-            sum_of_coeff = 0
-            for j in range(window_size, 0, -1):
-                sum_values += j * (ratios['Ratios'].values)[i - window_size + j]
-                sum_of_coeff += j
-            predicted_ratio = sum_values / sum_of_coeff
-        else:
-            sum_values = 0
-            sum_of_coeff = 0
-            for j in range(i + 1, 0, -1):
-                sum_values += j * (ratios['Ratios'].values)[j - 1]
-                sum_of_coeff += j
-            predicted_ratio = sum_values / sum_of_coeff
-
-    ratios['WA_R_Predicted'] = predicted_values
-    ratios['WA_R_Error'] = error
-    mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
-    mse_err = sum([e ** 2 for e in error]) / len(error)
-    return ratios, mape_err, mse_err
-
-
-def WA_P_Predictions(ratios, month):
-    predicted_value = (ratios['Prediction'].values)[0]
-    error = []
-    predicted_values = []
-    window_size = 2
-    for i in range(0, 4464 * 40):
-        predicted_values.append(predicted_value)
-        error.append(abs((math.pow(predicted_value - (ratios['Prediction'].values)[i], 1))))
-        if i + 1 >= window_size:
-            sum_values = 0
-            sum_of_coeff = 0
-            for j in range(window_size, 0, -1):
-                sum_values += j * (ratios['Prediction'].values)[i - window_size + j]
-                sum_of_coeff += j
-            predicted_value = int(sum_values / sum_of_coeff)
-
-        else:
-            sum_values = 0
-            sum_of_coeff = 0
-            for j in range(i + 1, 0, -1):
-                sum_values += j * (ratios['Prediction'].values)[j - 1]
-                sum_of_coeff += j
-            predicted_value = int(sum_values / sum_of_coeff)
-
-    ratios['WA_P_Predicted'] = predicted_values
-    ratios['WA_P_Error'] = error
-    mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
-    mse_err = sum([e ** 2 for e in error]) / len(error)
-    return ratios, mape_err, mse_err
-
-
-def EA_R1_Predictions(ratios, month):
-    predicted_ratio = (ratios['Ratios'].values)[0]
-    alpha = 0.6
-    error = []
-    predicted_values = []
-    predicted_ratio_values = []
-    for i in range(0, 4464 * 40):
-        if i % 4464 == 0:
-            predicted_ratio_values.append(0)
-            predicted_values.append(0)
-            error.append(0)
-            continue
-        predicted_ratio_values.append(predicted_ratio)
-        predicted_values.append(int(((ratios['Given'].values)[i]) * predicted_ratio))
-        error.append(
-            abs((math.pow(int(((ratios['Given'].values)[i]) * predicted_ratio) - (ratios['Prediction'].values)[i], 1))))
-        predicted_ratio = (alpha * predicted_ratio) + (1 - alpha) * ((ratios['Ratios'].values)[i])
-
-    ratios['EA_R1_Predicted'] = predicted_values
-    ratios['EA_R1_Error'] = error
-    mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
-    mse_err = sum([e ** 2 for e in error]) / len(error)
-    return ratios, mape_err, mse_err
-
-
-def EA_P1_Predictions(ratios, month):
-    predicted_value = (ratios['Prediction'].values)[0]
-    alpha = 0.3
-    error = []
-    predicted_values = []
-    for i in range(0, 4464 * 40):
-        if i % 4464 == 0:
-            predicted_values.append(0)
-            error.append(0)
-            continue
-        predicted_values.append(predicted_value)
-        error.append(abs((math.pow(predicted_value - (ratios['Prediction'].values)[i], 1))))
-        predicted_value = int((alpha * predicted_value) + (1 - alpha) * ((ratios['Prediction'].values)[i]))
-
-    ratios['EA_P1_Predicted'] = predicted_values
-    ratios['EA_P1_Error'] = error
-    mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
-    mse_err = sum([e ** 2 for e in error]) / len(error)
-    return ratios, mape_err, mse_err
-
-mean_err=[0]*10
-median_err=[0]*10
-ratios_jan,mean_err[0],median_err[0]=MA_R_Predictions(ratios_jan,'jan')
-ratios_jan,mean_err[1],median_err[1]=MA_P_Predictions(ratios_jan,'jan')
-ratios_jan,mean_err[2],median_err[2]=WA_R_Predictions(ratios_jan,'jan')
-ratios_jan,mean_err[3],median_err[3]=WA_P_Predictions(ratios_jan,'jan')
-ratios_jan,mean_err[4],median_err[4]=EA_R1_Predictions(ratios_jan,'jan')
-ratios_jan,mean_err[5],median_err[5]=EA_P1_Predictions(ratios_jan,'jan')
-
-print ("Error Metric Matrix (Forecasting Methods) - MAPE & MSE")
-print ("--------------------------------------------------------------------------------------------------------")
-print ("Moving Averages (Ratios) -                             MAPE: ",mean_err[0],"      MSE: ",median_err[0])
-print ("Moving Averages (2016 Values) -                        MAPE: ",mean_err[1],"       MSE: ",median_err[1])
-print ("--------------------------------------------------------------------------------------------------------")
-print ("Weighted Moving Averages (Ratios) -                    MAPE: ",mean_err[2],"      MSE: ",median_err[2])
-print ("Weighted Moving Averages (2016 Values) -               MAPE: ",mean_err[3],"      MSE: ",median_err[3])
-print ("--------------------------------------------------------------------------------------------------------")
-print ("Exponential Moving Averages (Ratios) -              MAPE: ",mean_err[4],"      MSE: ",median_err[4])
-print ("Exponential Moving Averages (2016 Values) -         MAPE: ",mean_err[5],"      MSE: ",median_err[5])
-
-
-# Preparing data to be split into train and test, The below prepares data in cumulative form which will be later split into test and train
-# number of 10min indices for jan 2015= 24*31*60/10 = 4464
-# number of 10min indices for jan 2016 = 24*31*60/10 = 4464
-# number of 10min indices for feb 2016 = 24*29*60/10 = 4176
-# number of 10min indices for march 2016 = 24*31*60/10 = 4464
-# regions_cum: it will contain 40 lists, each list will contain 4464+4176+4464 values which represents the number of pickups
-# that are happened for three months in 2016 data
-
-# print(len(regions_cum))
-# 40
-# print(len(regions_cum[0]))
-# 12960
-
-# we take number of pickups that are happened in last 5 10min intravels
-number_of_time_stamps = 5
-
-# output varaible
-# it is list of lists
-# it will contain number of pickups 13099 for each cluster
-output = []
-
-
-# tsne_lat will contain 13104-5=13099 times lattitude of cluster center for every cluster
-# Ex: [[cent_lat 13099times],[cent_lat 13099times], [cent_lat 13099times].... 40 lists]
-# it is list of lists
-tsne_lat = []
-
-
-# tsne_lon will contain 13104-5=13099 times logitude of cluster center for every cluster
-# Ex: [[cent_long 13099times],[cent_long 13099times], [cent_long 13099times].... 40 lists]
-# it is list of lists
-tsne_lon = []
-
-# we will code each day
-# sunday = 0, monday=1, tue = 2, wed=3, thur=4, fri=5,sat=6
-# for every cluster we will be adding 13099 values, each value represent to which day of the week that pickup bin belongs to
-# it is list of lists
-tsne_weekday = []
-
-# its an numbpy array, of shape (523960, 5)
-# each row corresponds to an entry in out data
-# for the first row we will have [f0,f1,f2,f3,f4] fi=number of pickups happened in i+1th 10min intravel(bin)
-# the second row will have [f1,f2,f3,f4,f5]
-# the third row will have [f2,f3,f4,f5,f6]
-# and so on...
-tsne_feature = []
-
-
-tsne_feature = [0]*number_of_time_stamps
-for i in range(0,40):
-    tsne_lat.append([kmeans.cluster_centers_[i][0]]*13099)
-    tsne_lon.append([kmeans.cluster_centers_[i][1]]*13099)
-    # jan 1st 2016 is thursday, so we start our day from 4: "(int(k/144))%7+4"
-    # our prediction start from 5th 10min intravel since we need to have number of pickups that are happened in last 5 pickup bins
-    tsne_weekday.append([int(((int(k/144))%7+4)%7) for k in range(5,4464+4176+4464)])
-    # regions_cum is a list of lists [[x1,x2,x3..x13104], [x1,x2,x3..x13104], [x1,x2,x3..x13104], [x1,x2,x3..x13104], [x1,x2,x3..x13104], .. 40 lsits]
-    tsne_feature = np.vstack((tsne_feature, [regions_cum[i][r:r+number_of_time_stamps] for r in range(0,len(regions_cum[i])-number_of_time_stamps)]))
-    output.append(regions_cum[i][5:])
-tsne_feature = tsne_feature[1:]
-
-print(len(tsne_lat[0])*len(tsne_lat) == tsne_feature.shape[0] == len(tsne_weekday)*len(tsne_weekday[0]) == 40*13099 == len(output)*len(output[0]))
-
-# Getting the predictions of exponential moving averages to be used as a feature in cumulative form
-
-# upto now we computed 8 features for every data point that starts from 50th min of the day
-# 1. cluster center lattitude
-# 2. cluster center longitude
-# 3. day of the week
-# 4. f_t_1: number of pickups that are happened previous t-1th 10min intravel
-# 5. f_t_2: number of pickups that are happened previous t-2th 10min intravel
-# 6. f_t_3: number of pickups that are happened previous t-3th 10min intravel
-# 7. f_t_4: number of pickups that are happened previous t-4th 10min intravel
-# 8. f_t_5: number of pickups that are happened previous t-5th 10min intravel
-
-# from the baseline models we said the exponential weighted moving avarage gives us the best error
-# we will try to add the same exponential weighted moving avarage at t as a feature to our data
-# exponential weighted moving avarage => p'(t) = alpha*p'(t-1) + (1-alpha)*P(t-1)
-alpha=0.3
-
-# it is a temporary array that store exponential weighted moving avarage for each 10min intravel,
-# for each cluster it will get reset
-# for every cluster it contains 13104 values
-predicted_values=[]
-
-# it is similar like tsne_lat
-# it is list of lists
-# predict_list is a list of lists [[x5,x6,x7..x13104], [x5,x6,x7..x13104], [x5,x6,x7..x13104], [x5,x6,x7..x13104], [x5,x6,x7..x13104], .. 40 lsits]
-predict_list = []
-tsne_flat_exp_avg = []
-for r in range(0,40):
-    for i in range(0,13104):
-        if i==0:
-            predicted_value= regions_cum[r][0]
-            predicted_values.append(0)
-            continue
-        predicted_values.append(predicted_value)
-        predicted_value =int((alpha*predicted_value) + (1-alpha)*(regions_cum[r][i]))
-    predict_list.append(predicted_values[5:])
-    predicted_values=[]
-
-# train, test split : 70% 30% split
-# Before we start predictions using the tree based regression models we take 3 months of 2016 pickup data
-# and split it such that for every region we have 70% data in train and 30% in test,
-# ordered date-wise for every region
-print("size of train data :", int(13099*0.7))
-print("size of test data :", int(13099*0.3))
-
-# extracting first 9169 timestamp values i.e 70% of 13099 (total timestamps) for our training data
-train_features =  [tsne_feature[i*13099:(13099*i+9169)] for i in range(0,40)]
-# temp = [0]*(12955 - 9068)
-test_features = [tsne_feature[(13099*(i))+9169:13099*(i+1)] for i in range(0,40)]
-
-print("Number of data clusters",len(train_features), "Number of data points in trian data", len(train_features[0]), "Each data point contains", len(train_features[0][0]),"features")
-print("Number of data clusters",len(train_features), "Number of data points in test data", len(test_features[0]), "Each data point contains", len(test_features[0][0]),"features")
-
-
-# extracting first 9169 timestamp values i.e 70% of 13099 (total timestamps) for our training data
-tsne_train_flat_lat = [i[:9169] for i in tsne_lat]
-tsne_train_flat_lon = [i[:9169] for i in tsne_lon]
-tsne_train_flat_weekday = [i[:9169] for i in tsne_weekday]
-tsne_train_flat_output = [i[:9169] for i in output]
-tsne_train_flat_exp_avg = [i[:9169] for i in predict_list]
-
-
-# extracting the rest of the timestamp values i.e 30% of 12956 (total timestamps) for our test data
-tsne_test_flat_lat = [i[9169:] for i in tsne_lat]
-tsne_test_flat_lon = [i[9169:] for i in tsne_lon]
-tsne_test_flat_weekday = [i[9169:] for i in tsne_weekday]
-tsne_test_flat_output = [i[9169:] for i in output]
-tsne_test_flat_exp_avg = [i[9169:] for i in predict_list]
-
-
-# the above contains values in the form of list of lists (i.e. list of values of each region), here we make all of them in one list
-train_new_features = []
-for i in range(0,40):
-    train_new_features.extend(train_features[i])
-test_new_features = []
-for i in range(0,40):
-    test_new_features.extend(test_features[i])
-
-
-# converting lists of lists into sinle list i.e flatten
-# a  = [[1,2,3,4],[4,6,7,8]]
-# print(sum(a,[]))
-# [1, 2, 3, 4, 4, 6, 7, 8]
-
-tsne_train_lat = sum(tsne_train_flat_lat, [])
-tsne_train_lon = sum(tsne_train_flat_lon, [])
-tsne_train_weekday = sum(tsne_train_flat_weekday, [])
-tsne_train_output = sum(tsne_train_flat_output, [])
-tsne_train_exp_avg = sum(tsne_train_flat_exp_avg,[])
-
-
-# converting lists of lists into sinle list i.e flatten
-# a  = [[1,2,3,4],[4,6,7,8]]
-# print(sum(a,[]))
-# [1, 2, 3, 4, 4, 6, 7, 8]
-
-tsne_test_lat = sum(tsne_test_flat_lat, [])
-tsne_test_lon = sum(tsne_test_flat_lon, [])
-tsne_test_weekday = sum(tsne_test_flat_weekday, [])
-tsne_test_output = sum(tsne_test_flat_output, [])
-tsne_test_exp_avg = sum(tsne_test_flat_exp_avg,[])
-
-
-# Preparing the data frame for our train data
-columns = ['ft_5','ft_4','ft_3','ft_2','ft_1']
-df_train = pd.DataFrame(data=train_new_features, columns=columns)
-df_train['lat'] = tsne_train_lat
-df_train['lon'] = tsne_train_lon
-df_train['weekday'] = tsne_train_weekday
-df_train['exp_avg'] = tsne_train_exp_avg
-
-print(df_train.shape)
-
-# Preparing the data frame for our train data
-df_test = pd.DataFrame(data=test_new_features, columns=columns)
-df_test['lat'] = tsne_test_lat
-df_test['lon'] = tsne_test_lon
-df_test['weekday'] = tsne_test_weekday
-df_test['exp_avg'] = tsne_test_exp_avg
-print(df_test.shape)
-
-
-print(df_test.head())
-
-# RANDOM FOREST REGRESSOR
-
-regr1 = RandomForestRegressor(max_features='sqrt',min_samples_leaf=4,min_samples_split=3,n_estimators=40, n_jobs=-1)
-regr1.fit(df_train, tsne_train_output)
+#
+# # time binning
+#
+# # Refer:https://www.unixtimestamp.com/
+# # 1420070400 : 2015-01-01 00:00:00
+# # 1422748800 : 2015-02-01 00:00:00
+# # 1425168000 : 2015-03-01 00:00:00
+# # 1427846400 : 2015-04-01 00:00:00
+# # 1430438400 : 2015-05-01 00:00:00
+# # 1433116800 : 2015-06-01 00:00:00
+#
+# # 1451606400 : 2016-01-01 00:00:00
+# # 1454284800 : 2016-02-01 00:00:00
+# # 1456790400 : 2016-03-01 00:00:00
+# # 1459468800 : 2016-04-01 00:00:00
+# # 1462060800 : 2016-05-01 00:00:00
+# # 1464739200 : 2016-06-01 00:00:00
+#
+# def add_pickup_bins(frame, month, year):
+#     unix_pickup_times = [i for i in frame['pickup_times'].values]
+#     unix_times = [[1420070400, 1422748800, 1425168000, 1427846400, 1430438400, 1433116800],
+#                   [1451606400, 1454284800, 1456790400, 1459468800, 1462060800, 1464739200]]
+#
+#     start_pickup_unix = unix_times[year - 2015][month - 1]
+#     # https://www.timeanddate.com/time/zones/est
+#     # (int((i-start_pickup_unix)/600)+33) : our unix time is in gmt to we are converting it to est
+#     tenminutewise_binned_unix_pickup_times = [(int((i - start_pickup_unix) / 600) + 33) for i in unix_pickup_times]
+#     frame['pickup_bins'] = np.array(tenminutewise_binned_unix_pickup_times)
+#     return frame
+#
+#
+# # clustering, making pickup bins and grouping by pickup cluster and pickup bins
+# frame_with_durations_outliers_removed['pickup_cluster'] = kmeans.predict(frame_with_durations_outliers_removed[['pickup_latitude', 'pickup_longitude']])
+# jan_2015_frame = add_pickup_bins(frame_with_durations_outliers_removed,1,2015)
+# jan_2015_groupby = jan_2015_frame[['pickup_cluster','pickup_bins','trip_distance']].groupby(['pickup_cluster','pickup_bins']).count()
+#
+# # we add two more columns 'pickup_cluster'(to which cluster it belogns to)
+# # and 'pickup_bins' (to which 10min intravel the trip belongs to)
+# jan_2015_frame.head()
+#
+# # hear the trip_distance represents the number of pickups that are happend in that particular 10min intravel
+# # this data frame has two indices
+# # primary index: pickup_cluster (cluster number)
+# # secondary index : pickup_bins (we devid whole months time into 10min intravels 24*31*60/10 =4464bins)
+# jan_2015_groupby.head()
+#
+#
+# # upto now we cleaned data and prepared data for the month 2015,
+#
+# # now do the same operations for months Jan, Feb, March of 2016
+# # 1. get the dataframe which inlcudes only required colums
+# # 2. adding trip times, speed, unix time stamp of pickup_time
+# # 4. remove the outliers based on trip_times, speed, trip_duration, total_amount
+# # 5. add pickup_cluster to each data point
+# # 6. add pickup_bin (index of 10min intravel to which that trip belongs to)
+# # 7. group by data, based on 'pickup_cluster' and 'pickuo_bin'
+#
+# # Data Preparation for the months of Jan,Feb and March 2016
+# def datapreparation(month, kmeans, month_no, year_no):
+#     print("Return with trip times..")
+#
+#     frame_with_durations = return_with_trip_times(month)
+#
+#     print("Remove outliers..")
+#     frame_with_durations_outliers_removed = remove_outliers(frame_with_durations)
+#
+#     print("Estimating clusters..")
+#     frame_with_durations_outliers_removed['pickup_cluster'] = kmeans.predict(
+#         frame_with_durations_outliers_removed[['pickup_latitude', 'pickup_longitude']])
+#     # frame_with_durations_outliers_removed_2016['pickup_cluster'] = kmeans.predict(frame_with_durations_outliers_removed_2016[['pickup_latitude', 'pickup_longitude']])
+#
+#     print("Final groupbying..")
+#     final_updated_frame = add_pickup_bins(frame_with_durations_outliers_removed, month_no, year_no)
+#     final_groupby_frame = final_updated_frame[['pickup_cluster', 'pickup_bins', 'trip_distance']].groupby(
+#         ['pickup_cluster', 'pickup_bins']).count()
+#
+#     return final_updated_frame, final_groupby_frame
+#
+#
+# month_jan_2016 = dd.read_csv('yellow_tripdata_2016-01.csv')
+# month_feb_2016 = dd.read_csv('yellow_tripdata_2016-02.csv')
+# month_mar_2016 = dd.read_csv('yellow_tripdata_2016-03.csv')
+#
+# jan_2016_frame, jan_2016_groupby = datapreparation(month_jan_2016, kmeans, 1, 2016)
+# feb_2016_frame, feb_2016_groupby = datapreparation(month_feb_2016, kmeans, 2, 2016)
+# mar_2016_frame, mar_2016_groupby = datapreparation(month_mar_2016, kmeans, 3, 2016)
+#
+#
+# #smoothing
+#
+# # Gets the unique bins where pickup values are present for each each reigion
+#
+# # for each cluster region we will collect all the indices of 10min intravels in which the pickups are happened
+# # we got an observation that there are some pickpbins that doesnt have any pickups
+# def return_unq_pickup_bins(frame):
+#     values = []
+#     for i in range(0,40):
+#         new = frame[frame['pickup_cluster'] == i]
+#         list_unq = list(set(new['pickup_bins']))
+#         list_unq.sort()
+#         values.append(list_unq)
+#     return values
+#
+#
+# # for every month we get all indices of 10min intravels in which atleast one pickup got happened
+#
+# #jan
+# jan_2015_unique = return_unq_pickup_bins(jan_2015_frame)
+# jan_2016_unique = return_unq_pickup_bins(jan_2016_frame)
+#
+# #feb
+# feb_2016_unique = return_unq_pickup_bins(feb_2016_frame)
+#
+# #march
+# mar_2016_unique = return_unq_pickup_bins(mar_2016_frame)
+#
+#
+# # for each cluster number of 10min intravels with 0 pickups
+# for i in range(40):
+#     print("for the ",i,"th cluster number of 10min intavels with zero pickups: ",4464 - len(set(jan_2015_unique[i])))
+#     print('-'*60)
+#
+#
+# # Fills a value of zero for every bin where no pickup data is present
+# # the count_values: number pickps that are happened in each region for each 10min intravel
+# # there wont be any value if there are no picksups.
+# # values: number of unique bins
+#
+# # for every 10min intravel(pickup_bin) we will check it is there in our unique bin,
+# # if it is there we will add the count_values[index] to smoothed data
+# # if not we add 0 to the smoothed data
+# # we finally return smoothed data
+# def fill_missing(count_values,values):
+#     smoothed_regions=[]
+#     ind=0
+#     for r in range(0,40):
+#         smoothed_bins=[]
+#         for i in range(4464):
+#             if i in values[r]:
+#                 smoothed_bins.append(count_values[ind])
+#                 ind+=1
+#             else:
+#                 smoothed_bins.append(0)
+#         smoothed_regions.extend(smoothed_bins)
+#     return smoothed_regions
+#
+#
+# # Fills a value of zero for every bin where no pickup data is present
+# # the count_values: number pickps that are happened in each region for each 10min intravel
+# # there wont be any value if there are no picksups.
+# # values: number of unique bins
+#
+# # for every 10min intravel(pickup_bin) we will check it is there in our unique bin,
+# # if it is there we will add the count_values[index] to smoothed data
+# # if not we add smoothed data (which is calculated based on the methods that are discussed in the above markdown cell)
+# # we finally return smoothed data
+# def smoothing(count_values,values):
+#     smoothed_regions=[] # stores list of final smoothed values of each reigion
+#     ind=0
+#     repeat=0
+#     smoothed_value=0
+#     for r in range(0,40):
+#         smoothed_bins=[] #stores the final smoothed values
+#         repeat=0
+#         for i in range(4464):
+#             if repeat!=0: # prevents iteration for a value which is already visited/resolved
+#                 repeat-=1
+#                 continue
+#             if i in values[r]: #checks if the pickup-bin exists
+#                 smoothed_bins.append(count_values[ind]) # appends the value of the pickup bin if it exists
+#             else:
+#                 if i!=0:
+#                     right_hand_limit=0
+#                     for j in range(i,4464):
+#                         if  j not in values[r]: #searches for the left-limit or the pickup-bin value which has a pickup value
+#                             continue
+#                         else:
+#                             right_hand_limit=j
+#                             break
+#                     if right_hand_limit==0:
+#                     #Case 1: When we have the last/last few values are found to be missing,hence we have no right-limit here
+#                         smoothed_value=count_values[ind-1]*1.0/((4463-i)+2)*1.0
+#                         for j in range(i,4464):
+#                             smoothed_bins.append(math.ceil(smoothed_value))
+#                         smoothed_bins[i-1] = math.ceil(smoothed_value)
+#                         repeat=(4463-i)
+#                         ind-=1
+#                     else:
+#                     #Case 2: When we have the missing values between two known values
+#                         smoothed_value=(count_values[ind-1]+count_values[ind])*1.0/((right_hand_limit-i)+2)*1.0
+#                         for j in range(i,right_hand_limit+1):
+#                             smoothed_bins.append(math.ceil(smoothed_value))
+#                         smoothed_bins[i-1] = math.ceil(smoothed_value)
+#                         repeat=(right_hand_limit-i)
+#                 else:
+#                     #Case 3: When we have the first/first few values are found to be missing,hence we have no left-limit here
+#                     right_hand_limit=0
+#                     for j in range(i,4464):
+#                         if  j not in values[r]:
+#                             continue
+#                         else:
+#                             right_hand_limit=j
+#                             break
+#                     smoothed_value=count_values[ind]*1.0/((right_hand_limit-i)+1)*1.0
+#                     for j in range(i,right_hand_limit+1):
+#                             smoothed_bins.append(math.ceil(smoothed_value))
+#                     repeat=(right_hand_limit-i)
+#             ind+=1
+#         smoothed_regions.extend(smoothed_bins)
+#     return smoothed_regions
+#
+#
+# #Filling Missing values of Jan-2015 with 0
+# # here in jan_2015_groupby dataframe the trip_distance represents the number of pickups that are happened
+# jan_2015_fill = fill_missing(jan_2015_groupby['trip_distance'].values,jan_2015_unique)
+#
+# #Smoothing Missing values of Jan-2015
+# jan_2015_smooth = smoothing(jan_2015_groupby['trip_distance'].values,jan_2015_unique)
+#
+#
+# # number of 10min indices for jan 2015= 24*31*60/10 = 4464
+# # number of 10min indices for jan 2016 = 24*31*60/10 = 4464
+# # number of 10min indices for feb 2016 = 24*29*60/10 = 4176
+# # number of 10min indices for march 2016 = 24*30*60/10 = 4320
+# # for each cluster we will have 4464 values, therefore 40*4464 = 178560 (length of the jan_2015_fill)
+# print("number of 10min intravels among all the clusters ",len(jan_2015_fill))
+#
+#
+#
+# # Jan-2015 data is smoothed, Jan,Feb & March 2016 data missing values are filled with zero
+# jan_2015_smooth = smoothing(jan_2015_groupby['trip_distance'].values,jan_2015_unique)
+# jan_2016_smooth = fill_missing(jan_2016_groupby['trip_distance'].values,jan_2016_unique)
+# feb_2016_smooth = fill_missing(feb_2016_groupby['trip_distance'].values,feb_2016_unique)
+# mar_2016_smooth = fill_missing(mar_2016_groupby['trip_distance'].values,mar_2016_unique)
+#
+# # Making list of all the values of pickup data in every bin for a period of 3 months and storing them region-wise
+# regions_cum = []
+#
+# # a =[1,2,3]
+# # b = [2,3,4]
+# # a+b = [1, 2, 3, 2, 3, 4]
+#
+# # number of 10min indices for jan 2015= 24*31*60/10 = 4464
+# # number of 10min indices for jan 2016 = 24*31*60/10 = 4464
+# # number of 10min indices for feb 2016 = 24*29*60/10 = 4176
+# # number of 10min indices for march 2016 = 24*31*60/10 = 4464
+# # regions_cum: it will contain 40 lists, each list will contain 4464+4176+4464 values which represents the number of pickups
+# # that are happened for three months in 2016 data
+#
+# for i in range(0,40):
+#     regions_cum.append(jan_2016_smooth[4464*i:4464*(i+1)]+feb_2016_smooth[4176*i:4176*(i+1)]+mar_2016_smooth[4464*i:4464*(i+1)])
+#
+# # print(len(regions_cum))
+# # 40
+# # print(len(regions_cum[0]))
+# # 13104
+#
+#
+# def uniqueish_color():
+#
+#     """There're better ways to generate unique colors, but this isn't awful."""
+#     return plt.cm.gist_ncar(np.random.random())
+# first_x = list(range(0,4464))
+# second_x = list(range(4464,8640))
+# third_x = list(range(8640,13104))
+#
+# # getting peaks: https://blog.ytotech.com/2015/11/01/findpeaks-in-python/
+# # read more about fft function : https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fft.html
+# Y    = np.fft.fft(np.array(jan_2016_smooth)[0:4460])
+# # read more about the fftfreq: https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fftfreq.html
+# freq = np.fft.fftfreq(4460, 1)
+# n = len(freq)
+#
+# #Preparing the Dataframe only with x(i) values as jan-2015 data and y(i) values as jan-2016
+# ratios_jan = pd.DataFrame()
+# ratios_jan['Given']=jan_2015_smooth
+# ratios_jan['Prediction']=jan_2016_smooth
+# ratios_jan['Ratios']=ratios_jan['Prediction']*1.0/ratios_jan['Given']*1.0
+#
+#
+# # modelling baseline models
+#
+# def MA_R_Predictions(ratios, month):
+#     predicted_ratio = (ratios['Ratios'].values)[0]
+#     error = []
+#     predicted_values = []
+#     window_size = 3
+#     predicted_ratio_values = []
+#     for i in range(0, 4464 * 40):
+#         if i % 4464 == 0:
+#             predicted_ratio_values.append(0)
+#             predicted_values.append(0)
+#             error.append(0)
+#             continue
+#         predicted_ratio_values.append(predicted_ratio)
+#         predicted_values.append(int(((ratios['Given'].values)[i]) * predicted_ratio))
+#         error.append(
+#             abs((math.pow(int(((ratios['Given'].values)[i]) * predicted_ratio) - (ratios['Prediction'].values)[i], 1))))
+#         if i + 1 >= window_size:
+#             predicted_ratio = sum((ratios['Ratios'].values)[(i + 1) - window_size:(i + 1)]) / window_size
+#         else:
+#             predicted_ratio = sum((ratios['Ratios'].values)[0:(i + 1)]) / (i + 1)
+#
+#     ratios['MA_R_Predicted'] = predicted_values
+#     ratios['MA_R_Error'] = error
+#     mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
+#     mse_err = sum([e ** 2 for e in error]) / len(error)
+#     return ratios, mape_err, mse_err
+#
+#
+# def MA_P_Predictions(ratios, month):
+#     predicted_value = (ratios['Prediction'].values)[0]
+#     error = []
+#     predicted_values = []
+#     window_size = 1
+#     predicted_ratio_values = []
+#     for i in range(0, 4464 * 40):
+#         predicted_values.append(predicted_value)
+#         error.append(abs((math.pow(predicted_value - (ratios['Prediction'].values)[i], 1))))
+#         if i + 1 >= window_size:
+#             predicted_value = int(sum((ratios['Prediction'].values)[(i + 1) - window_size:(i + 1)]) / window_size)
+#         else:
+#             predicted_value = int(sum((ratios['Prediction'].values)[0:(i + 1)]) / (i + 1))
+#
+#     ratios['MA_P_Predicted'] = predicted_values
+#     ratios['MA_P_Error'] = error
+#     mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
+#     mse_err = sum([e ** 2 for e in error]) / len(error)
+#     return ratios, mape_err, mse_err
+#
+#
+# def WA_R_Predictions(ratios, month):
+#     predicted_ratio = (ratios['Ratios'].values)[0]
+#     alpha = 0.5
+#     error = []
+#     predicted_values = []
+#     window_size = 5
+#     predicted_ratio_values = []
+#     for i in range(0, 4464 * 40):
+#         if i % 4464 == 0:
+#             predicted_ratio_values.append(0)
+#             predicted_values.append(0)
+#             error.append(0)
+#             continue
+#         predicted_ratio_values.append(predicted_ratio)
+#         predicted_values.append(int(((ratios['Given'].values)[i]) * predicted_ratio))
+#         error.append(
+#             abs((math.pow(int(((ratios['Given'].values)[i]) * predicted_ratio) - (ratios['Prediction'].values)[i], 1))))
+#         if i + 1 >= window_size:
+#             sum_values = 0
+#             sum_of_coeff = 0
+#             for j in range(window_size, 0, -1):
+#                 sum_values += j * (ratios['Ratios'].values)[i - window_size + j]
+#                 sum_of_coeff += j
+#             predicted_ratio = sum_values / sum_of_coeff
+#         else:
+#             sum_values = 0
+#             sum_of_coeff = 0
+#             for j in range(i + 1, 0, -1):
+#                 sum_values += j * (ratios['Ratios'].values)[j - 1]
+#                 sum_of_coeff += j
+#             predicted_ratio = sum_values / sum_of_coeff
+#
+#     ratios['WA_R_Predicted'] = predicted_values
+#     ratios['WA_R_Error'] = error
+#     mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
+#     mse_err = sum([e ** 2 for e in error]) / len(error)
+#     return ratios, mape_err, mse_err
+#
+#
+# def WA_P_Predictions(ratios, month):
+#     predicted_value = (ratios['Prediction'].values)[0]
+#     error = []
+#     predicted_values = []
+#     window_size = 2
+#     for i in range(0, 4464 * 40):
+#         predicted_values.append(predicted_value)
+#         error.append(abs((math.pow(predicted_value - (ratios['Prediction'].values)[i], 1))))
+#         if i + 1 >= window_size:
+#             sum_values = 0
+#             sum_of_coeff = 0
+#             for j in range(window_size, 0, -1):
+#                 sum_values += j * (ratios['Prediction'].values)[i - window_size + j]
+#                 sum_of_coeff += j
+#             predicted_value = int(sum_values / sum_of_coeff)
+#
+#         else:
+#             sum_values = 0
+#             sum_of_coeff = 0
+#             for j in range(i + 1, 0, -1):
+#                 sum_values += j * (ratios['Prediction'].values)[j - 1]
+#                 sum_of_coeff += j
+#             predicted_value = int(sum_values / sum_of_coeff)
+#
+#     ratios['WA_P_Predicted'] = predicted_values
+#     ratios['WA_P_Error'] = error
+#     mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
+#     mse_err = sum([e ** 2 for e in error]) / len(error)
+#     return ratios, mape_err, mse_err
+#
+#
+# def EA_R1_Predictions(ratios, month):
+#     predicted_ratio = (ratios['Ratios'].values)[0]
+#     alpha = 0.6
+#     error = []
+#     predicted_values = []
+#     predicted_ratio_values = []
+#     for i in range(0, 4464 * 40):
+#         if i % 4464 == 0:
+#             predicted_ratio_values.append(0)
+#             predicted_values.append(0)
+#             error.append(0)
+#             continue
+#         predicted_ratio_values.append(predicted_ratio)
+#         predicted_values.append(int(((ratios['Given'].values)[i]) * predicted_ratio))
+#         error.append(
+#             abs((math.pow(int(((ratios['Given'].values)[i]) * predicted_ratio) - (ratios['Prediction'].values)[i], 1))))
+#         predicted_ratio = (alpha * predicted_ratio) + (1 - alpha) * ((ratios['Ratios'].values)[i])
+#
+#     ratios['EA_R1_Predicted'] = predicted_values
+#     ratios['EA_R1_Error'] = error
+#     mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
+#     mse_err = sum([e ** 2 for e in error]) / len(error)
+#     return ratios, mape_err, mse_err
+#
+#
+# def EA_P1_Predictions(ratios, month):
+#     predicted_value = (ratios['Prediction'].values)[0]
+#     alpha = 0.3
+#     error = []
+#     predicted_values = []
+#     for i in range(0, 4464 * 40):
+#         if i % 4464 == 0:
+#             predicted_values.append(0)
+#             error.append(0)
+#             continue
+#         predicted_values.append(predicted_value)
+#         error.append(abs((math.pow(predicted_value - (ratios['Prediction'].values)[i], 1))))
+#         predicted_value = int((alpha * predicted_value) + (1 - alpha) * ((ratios['Prediction'].values)[i]))
+#
+#     ratios['EA_P1_Predicted'] = predicted_values
+#     ratios['EA_P1_Error'] = error
+#     mape_err = (sum(error) / len(error)) / (sum(ratios['Prediction'].values) / len(ratios['Prediction'].values))
+#     mse_err = sum([e ** 2 for e in error]) / len(error)
+#     return ratios, mape_err, mse_err
+#
+# mean_err=[0]*10
+# median_err=[0]*10
+# ratios_jan,mean_err[0],median_err[0]=MA_R_Predictions(ratios_jan,'jan')
+# ratios_jan,mean_err[1],median_err[1]=MA_P_Predictions(ratios_jan,'jan')
+# ratios_jan,mean_err[2],median_err[2]=WA_R_Predictions(ratios_jan,'jan')
+# ratios_jan,mean_err[3],median_err[3]=WA_P_Predictions(ratios_jan,'jan')
+# ratios_jan,mean_err[4],median_err[4]=EA_R1_Predictions(ratios_jan,'jan')
+# ratios_jan,mean_err[5],median_err[5]=EA_P1_Predictions(ratios_jan,'jan')
+#
+# print ("Error Metric Matrix (Forecasting Methods) - MAPE & MSE")
+# print ("--------------------------------------------------------------------------------------------------------")
+# print ("Moving Averages (Ratios) -                             MAPE: ",mean_err[0],"      MSE: ",median_err[0])
+# print ("Moving Averages (2016 Values) -                        MAPE: ",mean_err[1],"       MSE: ",median_err[1])
+# print ("--------------------------------------------------------------------------------------------------------")
+# print ("Weighted Moving Averages (Ratios) -                    MAPE: ",mean_err[2],"      MSE: ",median_err[2])
+# print ("Weighted Moving Averages (2016 Values) -               MAPE: ",mean_err[3],"      MSE: ",median_err[3])
+# print ("--------------------------------------------------------------------------------------------------------")
+# print ("Exponential Moving Averages (Ratios) -              MAPE: ",mean_err[4],"      MSE: ",median_err[4])
+# print ("Exponential Moving Averages (2016 Values) -         MAPE: ",mean_err[5],"      MSE: ",median_err[5])
+#
+#
+# # Preparing data to be split into train and test, The below prepares data in cumulative form which will be later split into test and train
+# # number of 10min indices for jan 2015= 24*31*60/10 = 4464
+# # number of 10min indices for jan 2016 = 24*31*60/10 = 4464
+# # number of 10min indices for feb 2016 = 24*29*60/10 = 4176
+# # number of 10min indices for march 2016 = 24*31*60/10 = 4464
+# # regions_cum: it will contain 40 lists, each list will contain 4464+4176+4464 values which represents the number of pickups
+# # that are happened for three months in 2016 data
+#
+# # print(len(regions_cum))
+# # 40
+# # print(len(regions_cum[0]))
+# # 12960
+#
+# # we take number of pickups that are happened in last 5 10min intravels
+# number_of_time_stamps = 5
+#
+# # output varaible
+# # it is list of lists
+# # it will contain number of pickups 13099 for each cluster
+# output = []
+#
+#
+# # tsne_lat will contain 13104-5=13099 times lattitude of cluster center for every cluster
+# # Ex: [[cent_lat 13099times],[cent_lat 13099times], [cent_lat 13099times].... 40 lists]
+# # it is list of lists
+# tsne_lat = []
+#
+#
+# # tsne_lon will contain 13104-5=13099 times logitude of cluster center for every cluster
+# # Ex: [[cent_long 13099times],[cent_long 13099times], [cent_long 13099times].... 40 lists]
+# # it is list of lists
+# tsne_lon = []
+#
+# # we will code each day
+# # sunday = 0, monday=1, tue = 2, wed=3, thur=4, fri=5,sat=6
+# # for every cluster we will be adding 13099 values, each value represent to which day of the week that pickup bin belongs to
+# # it is list of lists
+# tsne_weekday = []
+#
+# # its an numbpy array, of shape (523960, 5)
+# # each row corresponds to an entry in out data
+# # for the first row we will have [f0,f1,f2,f3,f4] fi=number of pickups happened in i+1th 10min intravel(bin)
+# # the second row will have [f1,f2,f3,f4,f5]
+# # the third row will have [f2,f3,f4,f5,f6]
+# # and so on...
+# tsne_feature = []
+#
+#
+# tsne_feature = [0]*number_of_time_stamps
+# for i in range(0,40):
+#     tsne_lat.append([kmeans.cluster_centers_[i][0]]*13099)
+#     tsne_lon.append([kmeans.cluster_centers_[i][1]]*13099)
+#     # jan 1st 2016 is thursday, so we start our day from 4: "(int(k/144))%7+4"
+#     # our prediction start from 5th 10min intravel since we need to have number of pickups that are happened in last 5 pickup bins
+#     tsne_weekday.append([int(((int(k/144))%7+4)%7) for k in range(5,4464+4176+4464)])
+#     # regions_cum is a list of lists [[x1,x2,x3..x13104], [x1,x2,x3..x13104], [x1,x2,x3..x13104], [x1,x2,x3..x13104], [x1,x2,x3..x13104], .. 40 lsits]
+#     tsne_feature = np.vstack((tsne_feature, [regions_cum[i][r:r+number_of_time_stamps] for r in range(0,len(regions_cum[i])-number_of_time_stamps)]))
+#     output.append(regions_cum[i][5:])
+# tsne_feature = tsne_feature[1:]
+#
+# print(len(tsne_lat[0])*len(tsne_lat) == tsne_feature.shape[0] == len(tsne_weekday)*len(tsne_weekday[0]) == 40*13099 == len(output)*len(output[0]))
+#
+# # Getting the predictions of exponential moving averages to be used as a feature in cumulative form
+#
+# # upto now we computed 8 features for every data point that starts from 50th min of the day
+# # 1. cluster center lattitude
+# # 2. cluster center longitude
+# # 3. day of the week
+# # 4. f_t_1: number of pickups that are happened previous t-1th 10min intravel
+# # 5. f_t_2: number of pickups that are happened previous t-2th 10min intravel
+# # 6. f_t_3: number of pickups that are happened previous t-3th 10min intravel
+# # 7. f_t_4: number of pickups that are happened previous t-4th 10min intravel
+# # 8. f_t_5: number of pickups that are happened previous t-5th 10min intravel
+#
+# # from the baseline models we said the exponential weighted moving avarage gives us the best error
+# # we will try to add the same exponential weighted moving avarage at t as a feature to our data
+# # exponential weighted moving avarage => p'(t) = alpha*p'(t-1) + (1-alpha)*P(t-1)
+# alpha=0.3
+#
+# # it is a temporary array that store exponential weighted moving avarage for each 10min intravel,
+# # for each cluster it will get reset
+# # for every cluster it contains 13104 values
+# predicted_values=[]
+#
+# # it is similar like tsne_lat
+# # it is list of lists
+# # predict_list is a list of lists [[x5,x6,x7..x13104], [x5,x6,x7..x13104], [x5,x6,x7..x13104], [x5,x6,x7..x13104], [x5,x6,x7..x13104], .. 40 lsits]
+# predict_list = []
+# tsne_flat_exp_avg = []
+# for r in range(0,40):
+#     for i in range(0,13104):
+#         if i==0:
+#             predicted_value= regions_cum[r][0]
+#             predicted_values.append(0)
+#             continue
+#         predicted_values.append(predicted_value)
+#         predicted_value =int((alpha*predicted_value) + (1-alpha)*(regions_cum[r][i]))
+#     predict_list.append(predicted_values[5:])
+#     predicted_values=[]
+#
+# # train, test split : 70% 30% split
+# # Before we start predictions using the tree based regression models we take 3 months of 2016 pickup data
+# # and split it such that for every region we have 70% data in train and 30% in test,
+# # ordered date-wise for every region
+# print("size of train data :", int(13099*0.7))
+# print("size of test data :", int(13099*0.3))
+#
+# # extracting first 9169 timestamp values i.e 70% of 13099 (total timestamps) for our training data
+# train_features =  [tsne_feature[i*13099:(13099*i+9169)] for i in range(0,40)]
+# # temp = [0]*(12955 - 9068)
+# test_features = [tsne_feature[(13099*(i))+9169:13099*(i+1)] for i in range(0,40)]
+#
+# print("Number of data clusters",len(train_features), "Number of data points in trian data", len(train_features[0]), "Each data point contains", len(train_features[0][0]),"features")
+# print("Number of data clusters",len(train_features), "Number of data points in test data", len(test_features[0]), "Each data point contains", len(test_features[0][0]),"features")
+#
+#
+# # extracting first 9169 timestamp values i.e 70% of 13099 (total timestamps) for our training data
+# tsne_train_flat_lat = [i[:9169] for i in tsne_lat]
+# tsne_train_flat_lon = [i[:9169] for i in tsne_lon]
+# tsne_train_flat_weekday = [i[:9169] for i in tsne_weekday]
+# tsne_train_flat_output = [i[:9169] for i in output]
+# tsne_train_flat_exp_avg = [i[:9169] for i in predict_list]
+#
+#
+# # extracting the rest of the timestamp values i.e 30% of 12956 (total timestamps) for our test data
+# tsne_test_flat_lat = [i[9169:] for i in tsne_lat]
+# tsne_test_flat_lon = [i[9169:] for i in tsne_lon]
+# tsne_test_flat_weekday = [i[9169:] for i in tsne_weekday]
+# tsne_test_flat_output = [i[9169:] for i in output]
+# tsne_test_flat_exp_avg = [i[9169:] for i in predict_list]
+#
+#
+# # the above contains values in the form of list of lists (i.e. list of values of each region), here we make all of them in one list
+# train_new_features = []
+# for i in range(0,40):
+#     train_new_features.extend(train_features[i])
+# test_new_features = []
+# for i in range(0,40):
+#     test_new_features.extend(test_features[i])
+#
+#
+# # converting lists of lists into sinle list i.e flatten
+# # a  = [[1,2,3,4],[4,6,7,8]]
+# # print(sum(a,[]))
+# # [1, 2, 3, 4, 4, 6, 7, 8]
+#
+# tsne_train_lat = sum(tsne_train_flat_lat, [])
+# tsne_train_lon = sum(tsne_train_flat_lon, [])
+# tsne_train_weekday = sum(tsne_train_flat_weekday, [])
+# tsne_train_output = sum(tsne_train_flat_output, [])
+# tsne_train_exp_avg = sum(tsne_train_flat_exp_avg,[])
+#
+#
+# # converting lists of lists into sinle list i.e flatten
+# # a  = [[1,2,3,4],[4,6,7,8]]
+# # print(sum(a,[]))
+# # [1, 2, 3, 4, 4, 6, 7, 8]
+#
+# tsne_test_lat = sum(tsne_test_flat_lat, [])
+# tsne_test_lon = sum(tsne_test_flat_lon, [])
+# tsne_test_weekday = sum(tsne_test_flat_weekday, [])
+# tsne_test_output = sum(tsne_test_flat_output, [])
+# tsne_test_exp_avg = sum(tsne_test_flat_exp_avg,[])
+#
+#
+# # Preparing the data frame for our train data
+# columns = ['ft_5','ft_4','ft_3','ft_2','ft_1']
+# df_train = pd.DataFrame(data=train_new_features, columns=columns)
+# df_train['lat'] = tsne_train_lat
+# df_train['lon'] = tsne_train_lon
+# df_train['weekday'] = tsne_train_weekday
+# df_train['exp_avg'] = tsne_train_exp_avg
+#
+# print(df_train.shape)
+#
+# # Preparing the data frame for our train data
+# df_test = pd.DataFrame(data=test_new_features, columns=columns)
+# df_test['lat'] = tsne_test_lat
+# df_test['lon'] = tsne_test_lon
+# df_test['weekday'] = tsne_test_weekday
+# df_test['exp_avg'] = tsne_test_exp_avg
+# print(df_test.shape)
+#
+#
+# print(df_test.head())
+#
+# # RANDOM FOREST REGRESSOR
+#
+
+
+# regr1 = RandomForestRegressor(max_features='sqrt',min_samples_leaf=4,min_samples_split=3,n_estimators=40, n_jobs=-1)
+# regr1.fit(df_train, tsne_train_output)
 
 pickle.dump(point_list,open('pickled_point_list.pkl','wb'))
 print(point_list,"\nsize is of the list",point_list.size)
@@ -993,10 +995,10 @@ print("DONE pickling the pointed list")
 # # the parameters that we got above are found using grid search
 #
 print("----------------------DONE_-----------------------------")
-
-y_pred = regr1.predict(df_test)
-print(y_pred)
-print(type(regr1))
+#
+# y_pred = regr1.predict(df_test)
+# print(y_pred)
+# print(type(regr1))
 # rndf_test_predictions = [round(value) for value in y_pred]
 # y_pred = regr1.predict(df_train)
 # rndf_train_predictions = [round(value) for value in y_pred]

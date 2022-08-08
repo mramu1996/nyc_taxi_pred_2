@@ -1,16 +1,17 @@
 import pickle
+import numpy as np
 
 from flask import Flask, render_template, request, jsonify
 
 # model = pickle.load(open('model.pkl', 'rb'))
-# point_list = pickle.load(open('pickled_point_list.pkl', 'rb'))
+point_list = pickle.load(open('pickled_point_list.pkl', 'rb'))
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return render_template("index.html")
+    return render_template("index.html",hell=point_list[0])
 
 
 if __name__ == '__main__':
@@ -28,7 +29,7 @@ if __name__ == '__main__':
 def android_predict():
     # req_json = request.json
     # print("Values that were posted :\n", req_json)
-    # jsonify({"Prediction": str(point_list)})"
-    return "attaboy"
+    n=np.array(point_list)
+    return jsonify({"Prediction":n.tolist()[0:1000] })
 
 def get(key): return request.form.get(key, 0)
