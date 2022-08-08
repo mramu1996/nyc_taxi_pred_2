@@ -29,6 +29,6 @@ def android_predict():
     # req_json = request.json
     # print("Values that were posted :\n", req_json)
     # jsonify({"Prediction": str(point_list)})"
-    return "atta-boy"
+    return "attaboy"
 
 def get(key): return request.form.get(key, 0)
