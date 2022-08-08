@@ -30,6 +30,6 @@ def android_predict():
     # req_json = request.json
     # print("Values that were posted :\n", req_json)
     n=np.array(point_list)
-    return jsonify({"Prediction":n.tolist()[0:1000] })
+    return jsonify({"Prediction":n.tolist() })
 
 def get(key): return request.form.get(key, 0)
