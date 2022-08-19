@@ -312,17 +312,26 @@ def plot_clusters(frame):
     city_long_border = (-74.03, -73.75)
     city_lat_border = (40.63, 40.85)
     fig, ax = plt.subplots(ncols=1, nrows=1)
-    ax.scatter(frame.pickup_longitude.values[:100000], frame.pickup_latitude.values[:100000], s=10, lw=0,
+    sc=plt.scatter(frame.pickup_longitude.values[:100000], frame.pickup_latitude.values[:100000], s=10, lw=0,
                c=frame.pickup_cluster.values[:100000], cmap='tab20', alpha=0.2)
     ax.set_xlim(city_long_border)
     ax.set_ylim(city_lat_border)
     ax.set_xlabel('Longitude')
     ax.set_ylabel('Latitude')
     point_data = ax.collections[0]
-    return point_data.get_offsets()
     # plt.show()
+    color_data = []
+    for i in range(100000):
+        color_data.append(sc.get_facecolors()[i].tolist())
+    print(color_data)
+    res_tuple = (point_data.get_offsets(), color_data)
+    return res_tuple
 
-point_list=plot_clusters(frame_with_durations_outliers_removed)
+res_tuple = plot_clusters(frame_with_durations_outliers_removed)
+# color_data=[]
+# for i in range(100000): color_data.append(sc.get_facecolors()[i].tolist())
+# print(color_data)
+
 #
 # # time binning
 #
@@ -982,8 +991,9 @@ point_list=plot_clusters(frame_with_durations_outliers_removed)
 
 # regr1 = RandomForestRegressor(max_features='sqrt',min_samples_leaf=4,min_samples_split=3,n_estimators=40, n_jobs=-1)
 # regr1.fit(df_train, tsne_train_output)
-
+point_list,color_list = res_tuple[0],res_tuple[1]
 pickle.dump(point_list,open('pickled_point_list.pkl','wb'))
+pickle.dump(color_list,open('color_list_pickle.pkl','wb'))
 print(point_list,"\nsize is of the list",point_list.size)
 print("DONE pickling the pointed list")
 # pickle.dump(regr1,open('model.pkl','wb'))
